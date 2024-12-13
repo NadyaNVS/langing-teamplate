@@ -128,11 +128,12 @@ function blockRenderer(block: any) {
   }
 }
 
-export default async function DynamicPageRoute({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function DynamicPageRoute(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
   const data = await loader(params.slug);
 
   if (!data) return <div>Page not found</div>;
