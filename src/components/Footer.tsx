@@ -1,68 +1,51 @@
 import React from "react";
 import { SocialIcon } from "react-social-icons";
-
+import { getStrapiURL } from "@/lib/utils";
 import Link from "next/link";
-
+import qs from "qs";
 import Image from "next/image";
 import { Container } from "@/components/Container";
+import { StrapiImage } from "./StrapiImage";
 
 async function loader() {
-  const data = {
-    footer: {
-      id: 1,
-      description:
-        "Nextly is a free landing page & marketing website template for startups and indie projects. Its built with Next.js & TailwindCSS. And its completely open-source.",
-      logoLink: {
-        id: 2,
-        text: "Strapify",
-        href: "/",
-        image: {
-          id: 1,
-          url: "/img/logo.svg",
-          alternativeText: null,
-          name: "logo.svg",
+  const { fetchData } = await import("@/lib/fetch");
+
+  const path = "/api/global";
+  const baseURL = getStrapiURL();
+
+  const query = qs.stringify({
+    populate: {
+      footer: {
+        populate: {
+          logoLink: {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText", "name"],
+              },
+            },
+          },
+          colOneLinks: {
+            populate: true,
+          },
+          colTwoLinks: {
+            populate: true,
+          },
+          socialLinks: {
+            populate: {
+              socialLink: {
+                populate: true,
+              },
+            },
+          },
         },
       },
-      colOneLinks: [
-        { id: 9, href: "/", text: "Home", external: false },
-        { id: 10, href: "/features", text: "Features", external: false },
-        { id: 11, href: "/pricing", text: "Pricing", external: false },
-        { id: 12, href: "/company", text: "Company", external: false },
-        { id: 13, href: "/blog", text: "Blog", external: false },
-      ],
-      colTwoLinks: [],
-      socialLinks: {
-        id: 1,
-        heading: "Follow us!",
-        socialLink: [
-          {
-            id: 14,
-            href: "https://www.facebook.com",
-            text: "Facebook",
-            external: true,
-          },
-          {
-            id: 15,
-            href: "http://www.youtube.com",
-            text: "YouTube",
-            external: true,
-          },
-          {
-            id: 16,
-            href: "http://www.github.com",
-            text: "GitHub",
-            external: true,
-          },
-          {
-            id: 17,
-            href: "http://www.twitter.com",
-            text: "Twitter",
-            external: true,
-          },
-        ],
-      },
     },
-  };
+  });
+
+  const url = new URL(path, baseURL);
+  url.search = query;
+
+  const data = await fetchData(url.href);
   return data;
 }
 
@@ -138,7 +121,7 @@ export async function Footer() {
                 href={logoLink.href}
                 className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100"
               >
-                <Image
+                <StrapiImage
                   src={logoLink.image.url}
                   alt={logoLink.image.alternativeText || logoLink.image.name}
                   width={32}

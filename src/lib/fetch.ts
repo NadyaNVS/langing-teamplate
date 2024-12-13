@@ -1,7 +1,6 @@
 import { flattenAttributes } from "@/lib/utils";
 
 export async function fetchData(url: string, authToken?: string) {
-
   const headers = {
     method: "GET",
     headers: {

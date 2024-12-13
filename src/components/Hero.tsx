@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { StrapiImage } from "./StrapiImage";
 import { Container } from "@/components/Container";
 
 interface HeroProps {
@@ -22,6 +22,7 @@ interface HeroProps {
 export function Hero({ data }: Readonly<HeroProps>) {
   if (!data) return null;
   const { heading, text, cta, image } = data;
+
   return (
     <Container className="flex flex-wrap ">
       <div className="flex items-center w-full lg:w-1/2">
@@ -67,7 +68,7 @@ export function Hero({ data }: Readonly<HeroProps>) {
       </div>
       <div className="flex items-center justify-center w-full lg:w-1/2">
         <div className="">
-          <Image
+          <StrapiImage
             src={image.url}
             width={616}
             height={617}

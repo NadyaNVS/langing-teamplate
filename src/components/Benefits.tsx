@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/Container";
 
 import { CheckIcon } from "@heroicons/react/20/solid";
+import { StrapiImage } from "./StrapiImage";
 
 function iconSelect(iconKey: string) {
   switch (iconKey) {
@@ -12,7 +13,6 @@ function iconSelect(iconKey: string) {
       return null;
   }
 }
-
 
 interface BenefitProps {
   data: {
@@ -46,7 +46,7 @@ export function Benefits({ data }: BenefitProps) {
         }`}
       >
         <div>
-          <Image
+          <StrapiImage
             src={image.url}
             width={521}
             height={521}
@@ -74,10 +74,7 @@ export function Benefits({ data }: BenefitProps) {
 
           <div className="w-full mt-5">
             {item.map((item, index) => (
-              <Benefit
-                key={index}
-                data={item}
-              ></Benefit>
+              <Benefit key={index} data={item}></Benefit>
             ))}
           </div>
         </div>

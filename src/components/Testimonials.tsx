@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@/components/Container";
 import Image from "next/image";
+import { StrapiImage } from "./StrapiImage";
 
 interface CardProps {
   id: number;
@@ -30,9 +31,7 @@ export function Testimonials({ data }: Readonly<TestimonialsProps>) {
         {cards.map((card) => (
           <div key={card.id} className="lg:col-span-2 xl:col-auto">
             <div className="flex flex-col justify-between w-full h-full bg-gray-100 px-14 rounded-2xl py-14 dark:bg-trueGray-800">
-              <p className="text-2xl leading-normal ">
-                {card.text}
-              </p>
+              <p className="text-2xl leading-normal ">{card.text}</p>
               <Avatar {...card} />
             </div>
           </div>
@@ -46,7 +45,7 @@ function Avatar(props: CardProps) {
   return (
     <div className="flex items-center mt-8 space-x-3">
       <div className="flex-shrink-0 overflow-hidden rounded-full w-14 h-14">
-        <Image
+        <StrapiImage
           src={props.image.url}
           width={40}
           height={40}

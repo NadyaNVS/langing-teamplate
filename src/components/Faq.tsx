@@ -13,21 +13,19 @@ interface FaqProps {
     id: number;
     __component: string;
     questions: {
-      data: {
-        id: number;
-        question: string;
-        answer: string;
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-      }[];
-    };
+      id: number;
+      question: string;
+      answer: string;
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+    }[];
   };
 }
 
 export function Faq({ data }: FaqProps) {
   if (!data) return null;
-  const questions = data.questions.data;
+  const questions = data.questions;
   return (
     <Container className="!p-0">
       <div className="w-full max-w-2xl p-2 mx-auto rounded-2xl">
