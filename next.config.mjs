@@ -11,6 +11,10 @@ const nextConfig = {
         hostname: "127.0.0.1",
         port: "1337",
       },
+      {
+        protocol: "https",
+        hostname: "https://timely-book-c65b6065a6.media.strapiapp.com/",
+      },
     ],
   },
 };
