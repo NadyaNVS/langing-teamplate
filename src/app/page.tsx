@@ -108,7 +108,6 @@ function blockRenderer(block: any) {
 export default async function Home() {
   const data = await loader();
   const blocks = data?.blocks;
-  console.log(blocks, "blocks");
   if (!blocks) return null;
 
   return (

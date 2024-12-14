@@ -39,11 +39,7 @@ export function flattenAttributes(data: any): any {
 }
 
 export function getStrapiURL() {
-  return (
-    process.env.NEXT_PUBLIC_STRAPI_API_URL ||
-    "http://localhost:1337" ||
-    "http://127.0.0.1:1337"
-  );
+  return process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 }
 
 export function getStrapiMedia(url: string | null) {

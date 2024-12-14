@@ -13,7 +13,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "https://timely-book-c65b6065a6.media.strapiapp.com/",
+        hostname: "timely-book-c65b6065a6.media.strapiapp.com",
       },
     ],
   },
